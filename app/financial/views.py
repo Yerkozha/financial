@@ -23,7 +23,7 @@ class FinancialViewSet(viewsets.GenericViewSet):
 
         data = serializer.validated_data
 
-        update_news.delay(int(data['bin']), 5)
+        
 
         is_exists = Financial.objects.filter(bin=data['bin']).first()
 

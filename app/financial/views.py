@@ -23,6 +23,7 @@ class FinancialViewSet(viewsets.GenericViewSet):
 
         data = serializer.validated_data
 
+
         is_exists = Financial.objects.filter(bin=data['bin']).first()
 
         # def payment():

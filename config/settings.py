@@ -7,7 +7,7 @@ from configurations import Configuration
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-
+print(os.getenv('DB_PASSWORD'), 'DB pass')
 class BaseConfig(Configuration):
 
 
@@ -68,7 +68,7 @@ class BaseConfig(Configuration):
 
     DATABASES = {
         'default': {
-            'ENGINE': os.getenv('DB_ENGINE', "django.db.backends.postgresql") ,
+            'ENGINE': os.getenv('DB_ENGINE', "django.db.backends.postgresql"),
             'NAME': os.getenv('DB_NAME', 'financial'),
             'HOST': os.getenv('DB_HOST', 'postgres'),
             'PORT': os.getenv('DB_PORT', '5432'),

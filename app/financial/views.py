@@ -16,20 +16,19 @@ class FinancialViewSet(viewsets.GenericViewSet):
 
     @action(detail=False, methods=['post'])
     def create_financial(self, request, pk=None):
-        print(request.data)
+        print(request.data, '\n====================')
         serializer = self.get_serializer(data=request.data)
 
         serializer.is_valid(raise_exception=True)
 
         data = serializer.validated_data
 
-        update_news.delay(int(data['bin']), 5)
 
         is_exists = Financial.objects.filter(bin=data['bin']).first()
 
         if is_exists is None:
 
-            res = serializer.save()
+            serializer.save()
 
 
             return Response(serializer.data)

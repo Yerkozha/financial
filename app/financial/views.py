@@ -29,7 +29,7 @@ class FinancialViewSet(viewsets.GenericViewSet):
 
         if is_exists is None:
 
-            res = serializer.save()
+            serializer.save()
 
 
             return Response(serializer.data)

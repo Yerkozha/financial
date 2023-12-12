@@ -7,7 +7,12 @@ from configurations import Configuration
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-print(os.getenv('DB_PASSWORD'), 'DB pass')
+print(os.getenv('DB_ENGINE', "django.db.backends.postgresql"),
+            os.getenv('DB_NAME', 'financial'), 'name',
+            os.getenv('DB_HOST', 'postgres'), 'host',
+            os.getenv('DB_PORT', '5432'), 'port',
+            os.getenv('DB_USER', 'postgres'), 'user',
+            os.getenv('DB_PASSWORD', 'postgres'), 'DB pass')
 class BaseConfig(Configuration):
 
 

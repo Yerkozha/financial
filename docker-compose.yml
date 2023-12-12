@@ -19,16 +19,14 @@ services:
       - "5672:5672"
       - "15672:15672"
     environment:
-      RABBITMQ_DEFAULT_USER: guest
-      RABBITMQ_DEFAULT_PASS: guest
+      RABBITMQ_DEFAULT_USER: test
+      RABBITMQ_DEFAULT_PASS: qwerty
 
   celery-worker:
     build: .
     command: celery -A config worker --loglevel=info
-    networks:
-      - mainapp
     environment:
-      - CELERY_BROKER_TRANSPORT_URL=amqp://guest:guest@rabbitmq:5672//
+      - CELERY_BROKER_TRANSPORT_URL=amqp://test:qwerty@rabbitmq:5672//
       - DATABASE_NAME=financial
       - DATABASE_USER=postgres
       - DATABASE_PASSWORD=postgres
@@ -47,8 +45,6 @@ services:
       - ./.env
     volumes:
       - .:/app
-    networks:
-      - mainapp
     ports:
       - "8000:8000"
     command: ["gunicorn", "--bind", "0.0.0.0:8000", "config.wsgi:application"]
@@ -56,6 +52,3 @@ services:
 
 volumes:
   postgres_data:
-
-networks:
-  mainapp:

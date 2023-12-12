@@ -23,13 +23,16 @@ class FinancialViewSet(viewsets.GenericViewSet):
 
         data = serializer.validated_data
 
-
         is_exists = Financial.objects.filter(bin=data['bin']).first()
+
+        # def payment():
+        #     import stripe
+        #     stripe.api_key = "sk_test_26PHem9AhJZvU623DfE1x4sd"
+
 
         if is_exists is None:
 
             serializer.save()
-
 
             return Response(serializer.data)
 

@@ -16,20 +16,16 @@ class FinancialViewSet(viewsets.GenericViewSet):
 
     @action(detail=False, methods=['post'])
     def create_financial(self, request, pk=None):
+
         print(request.data, '\n====================')
         serializer = self.get_serializer(data=request.data)
 
         serializer.is_valid(raise_exception=True)
 
+
         data = serializer.validated_data
 
-
         is_exists = Financial.objects.filter(bin=data['bin']).first()
-
-        # def payment():
-        #     import stripe
-        #     stripe.api_key = "sk_test_26PHem9AhJZvU623DfE1x4sd"
-
 
         if is_exists is None:
 
@@ -39,7 +35,27 @@ class FinancialViewSet(viewsets.GenericViewSet):
 
         return Response('Already existing record', status.HTTP_400_BAD_REQUEST)
 
+    def list(self, request, *args, **kwargs):
+        queryset = self.get_queryset()
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
 
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance)
+        return Response(serializer.data)
+
+    def update(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data)
+
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        instance.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 
 

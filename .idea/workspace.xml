@@ -1,14 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="49227730-c02b-4a94-8394-5e9ef1632304" name="Changes" comment="feat( init )" />
+    <list default="true" id="49227730-c02b-4a94-8394-5e9ef1632304" name="Changes" comment="feat( init )">
+      <change afterPath="$PROJECT_DIR$/.idea/financial.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/users/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/users/admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/users/apps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/users/manager.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/users/migrations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/users/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/users/serializers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/users/tests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/users/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/users/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/utils/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/utils/exceptions.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/utils/middleware_utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/financial/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/financial/migrations/0002_financial_address_financial_bank_vtorogo_urovnya_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/financial/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/financial/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/config/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/config/urls.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/venv/Lib/site-packages/rest_framework/response.py" root0="SKIP_INSPECTION" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -24,14 +57,39 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/www/financial&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.editor&quot;
+    &quot;last_opened_file_path&quot;: &quot;C:/www/skud&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\www\financial" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="financial" type="Python.DjangoServer" factoryName="Django server">
+      <module name="financial" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method v="2" />
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -45,7 +103,33 @@
       <workItem from="1701864826616" duration="56676000" />
       <workItem from="1702282025237" duration="1784000" />
       <workItem from="1702294889315" duration="4597000" />
-      <workItem from="1702375806374" duration="9526000" />
+      <workItem from="1702375806374" duration="10320000" />
+      <workItem from="1702396468453" duration="1445000" />
+      <workItem from="1702458880533" duration="5431000" />
+      <workItem from="1702645885064" duration="609000" />
+      <workItem from="1702646518446" duration="2830000" />
+      <workItem from="1702649435426" duration="593000" />
+      <workItem from="1702650130746" duration="331000" />
+      <workItem from="1702660316285" duration="620000" />
+      <workItem from="1702731106910" duration="12327000" />
+      <workItem from="1702753859863" duration="7385000" />
+      <workItem from="1702825682835" duration="30633000" />
+      <workItem from="1702901951483" duration="7108000" />
+      <workItem from="1702991427230" duration="12269000" />
+      <workItem from="1703077746645" duration="1196000" />
+      <workItem from="1703610054586" duration="14042000" />
+      <workItem from="1703687848207" duration="11096000" />
+      <workItem from="1703778737634" duration="12379000" />
+      <workItem from="1703847048276" duration="3294000" />
+      <workItem from="1703860613745" duration="671000" />
+      <workItem from="1703947588700" duration="3221000" />
+      <workItem from="1704045716860" duration="1477000" />
+      <workItem from="1704208316472" duration="672000" />
+      <workItem from="1704213697251" duration="2231000" />
+      <workItem from="1704273404993" duration="633000" />
+      <workItem from="1704384814846" duration="6879000" />
+      <workItem from="1704477102923" duration="7935000" />
+      <workItem from="1704727820081" duration="9176000" />
     </task>
     <task id="LOCAL-00001" summary="feat( init )">
       <created>1702283183346</created>

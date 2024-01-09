@@ -1,28 +1,27 @@
 import os
 
 from pathlib import Path
+from datetime import timedelta
 
 from configurations import Configuration
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-print(os.getenv('DB_ENGINE', "django.db.backends.postgresql"),
-            os.getenv('DB_NAME', 'financial'), 'name',
-            os.getenv('DB_HOST', 'postgres'), 'host',
-            os.getenv('DB_PORT', '5432'), 'port',
-            os.getenv('DB_USER', 'postgres'), 'user',
-            os.getenv('DB_PASSWORD', 'postgres'), 'DB pass')
+"""
+    site_packages 70 line recreate raise exp
+    cors
+    
+    event driven architecture asyncio eventemitter
+"""
 class BaseConfig(Configuration):
-
-
+    AUTH_USER_MODEL = 'users.IndividualModel'
 
     SECRET_KEY = os.getenv("BACKEND_SECRET_KEY")
-
 
     DEBUG = True
 
     ALLOWED_HOSTS = ['*']
+    CORS_ORIGIN_ALLOW_ALL = True
 
     INSTALLED_APPS = [
         'django.contrib.admin',
@@ -33,8 +32,10 @@ class BaseConfig(Configuration):
         'django.contrib.staticfiles',
         'rest_framework',
         'celery',
-        'app.financial'
-
+        'app.financial',
+        'app.users',
+        'rest_framework_simplejwt.token_blacklist',
+        "corsheaders",
     ]
 
     MIDDLEWARE = [
@@ -45,6 +46,8 @@ class BaseConfig(Configuration):
         'django.contrib.auth.middleware.AuthenticationMiddleware',
         'django.contrib.messages.middleware.MessageMiddleware',
         'django.middleware.clickjacking.XFrameOptionsMiddleware',
+        "corsheaders.middleware.CorsMiddleware",
+        "django.middleware.common.CommonMiddleware",
     ]
 
 
@@ -103,7 +106,7 @@ class BaseConfig(Configuration):
 
     LANGUAGE_CODE = 'en-us'
 
-    TIME_ZONE = 'UTC'
+    TIME_ZONE = 'Asia/Almaty'
 
     USE_I18N = True
 
@@ -117,9 +120,15 @@ class BaseConfig(Configuration):
     DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
     REST_FRAMEWORK = {
-        'DEFAULT_PERMISSION_CLASSES': [
-            'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-        ]
+        'DEFAULT_PERMISSION_CLASSES': (
+            'rest_framework.permissions.IsAuthenticated'
+        ),
+        'DEFAULT_AUTHENTICATION_CLASSES': (
+            'rest_framework_simplejwt.authentication.JWTAuthentication',
+            'rest_framework.authentication.SessionAuthentication',
+            'rest_framework.authentication.BasicAuthentication'
+        ),
+        'EXCEPTION_HANDLER': 'app.utils.exceptions.custom_exception_handler',
     }
 
     CELERY_BROKER_URL = "amqp://guest:guest@rabbitmq:5672/"
@@ -130,6 +139,21 @@ class BaseConfig(Configuration):
 
     CELERY_TASK_DEFAULT_QUEUE = "financial_queue"
     CELERY_IGNORE_RESULT = True
+
+    SIMPLE_JWT = {
+        'ACCESS_TOKEN_LIFETIME': timedelta(minutes=25),
+        'REFRESH_TOKEN_LIFETIME': timedelta(hours=1),
+        'ROTATE_REFRESH_TOKENS': True,
+        'BLACKLIST_AFTER_ROTATION': True,
+        'ALGORITHM': 'HS256',
+        'SIGNING_KEY': os.getenv("BACKEND_SECRET_KEY"),
+        'VERIFYING_KEY': None,
+        'AUTH_HEADER_TYPES': ('Bearer',),
+        'USER_ID_FIELD': 'id',
+        'USER_ID_CLAIM': 'user_id',
+        'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
+        'TOKEN_TYPE_CLAIM': 'token_type',
+    }
 
 
 class Dev(BaseConfig):

@@ -2,32 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="49227730-c02b-4a94-8394-5e9ef1632304" name="Changes" comment="feat( init )">
-      <change afterPath="$PROJECT_DIR$/.idea/financial.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/users/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/users/admin.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/users/apps.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/users/manager.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/users/migrations/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/users/models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/users/serializers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/users/tests.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/users/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/users/views.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/utils/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/utils/exceptions.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/utils/middleware_utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/financial/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/financial/migrations/0002_financial_address_financial_bank_vtorogo_urovnya_and_more.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/financial/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/financial/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/users/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/users/serializers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/config/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/config/urls.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,6 +107,22 @@
       <workItem from="1704384814846" duration="6879000" />
       <workItem from="1704477102923" duration="7935000" />
       <workItem from="1704727820081" duration="9176000" />
+      <workItem from="1704811078892" duration="4715000" />
+      <workItem from="1704855068825" duration="1290000" />
+      <workItem from="1704914063036" duration="1381000" />
+      <workItem from="1705383499338" duration="4202000" />
+      <workItem from="1705476189476" duration="1670000" />
+      <workItem from="1705643789403" duration="2305000" />
+      <workItem from="1705734084078" duration="1574000" />
+      <workItem from="1705842025852" duration="1382000" />
+      <workItem from="1705921011228" duration="2040000" />
+      <workItem from="1705997780402" duration="751000" />
+      <workItem from="1706096331664" duration="1613000" />
+      <workItem from="1706178479938" duration="840000" />
+      <workItem from="1706272043393" duration="541000" />
+      <workItem from="1706353629223" duration="624000" />
+      <workItem from="1706358323683" duration="2653000" />
+      <workItem from="1706534604087" duration="1269000" />
     </task>
     <task id="LOCAL-00001" summary="feat( init )">
       <created>1702283183346</created>

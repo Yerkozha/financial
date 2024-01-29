@@ -88,6 +88,7 @@ class AppointmentSerializer(serializers.ModelSerializer):
         instance.status = validated_data.get('status', 'canceled')
         instance.title = validated_data.get('title', 'new event')
         instance.summary = validated_data.get('summary', '')
+        instance.color = validated_data.get('color', 'lightgreen')
         instance.save()
         print(instance.status)
         return instance

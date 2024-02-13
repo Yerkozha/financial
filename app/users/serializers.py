@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import IndividualModel, AppointmentModel
+from .models import IndividualModel, AppointmentModel, DeviceToken
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import update_last_login
@@ -7,15 +7,29 @@ from django.contrib.auth.models import update_last_login
 
 
 class IndividualRegistrationSerializer(serializers.ModelSerializer):
+
+    device_token = serializers.CharField(write_only=True, required=False)
+
     class Meta:
         model = IndividualModel
         fields = (
             'email',
-            'password'
+            'password',
+            'device_token'
         )
 
     def create(self, validated_data):
+        device_token = validated_data.pop('device_token', None)
         auth_user = IndividualModel.objects.create_user(**validated_data)
+
+        if device_token:
+
+            # Check if the provided device token exists
+            device_token, created = DeviceToken.objects.get_or_create(token=device_token)
+            print('INFO', device_token, created)
+            device_token.user = auth_user
+            device_token.save()
+
         return auth_user
 
 
@@ -107,3 +121,8 @@ class IndividualListSerializer(serializers.ModelSerializer):
 
 
 
+class DeviceTokenSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = DeviceToken
+        exclude = ('user',)

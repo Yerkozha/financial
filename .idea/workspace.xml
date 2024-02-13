@@ -2,8 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="49227730-c02b-4a94-8394-5e9ef1632304" name="Changes" comment="feat( init )">
+      <change afterPath="$PROJECT_DIR$/app/users/consumers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/users/migrations/0009_pushnotification.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/users/migrations/0010_devicetoken.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hidjama-3326f-firebase-adminsdk-zr9nh-426699b34c.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/users/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/users/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/users/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/users/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/users/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/users/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/users/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/users/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/users/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/utils/FCMMessaging.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/FCMMessaging.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/asgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/config/asgi.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/config/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -122,7 +134,21 @@
       <workItem from="1706272043393" duration="541000" />
       <workItem from="1706353629223" duration="624000" />
       <workItem from="1706358323683" duration="2653000" />
-      <workItem from="1706534604087" duration="1269000" />
+      <workItem from="1706534604087" duration="2762000" />
+      <workItem from="1706703168837" duration="2743000" />
+      <workItem from="1706794735073" duration="1203000" />
+      <workItem from="1706876674534" duration="17310000" />
+      <workItem from="1706961752791" duration="17856000" />
+      <workItem from="1707056546398" duration="4678000" />
+      <workItem from="1707136059502" duration="2444000" />
+      <workItem from="1707231230684" duration="5207000" />
+      <workItem from="1707318025804" duration="7066000" />
+      <workItem from="1707410137267" duration="5844000" />
+      <workItem from="1707480155942" duration="1369000" />
+      <workItem from="1707580075951" duration="2239000" />
+      <workItem from="1707668108481" duration="8755000" />
+      <workItem from="1707749154922" duration="3491000" />
+      <workItem from="1707831928645" duration="362000" />
     </task>
     <task id="LOCAL-00001" summary="feat( init )">
       <created>1702283183346</created>

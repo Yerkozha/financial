@@ -1,12 +1,16 @@
 import os
+import firebase_admin
 
 from pathlib import Path
 from datetime import timedelta
 
 from configurations import Configuration
 
+from firebase_admin import initialize_app, credentials, messaging
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+print('BASE_DIR', os.path.join(BASE_DIR, 'hidjama-3326f-firebase-adminsdk-zr9nh-426699b34c.json'))
 """
     site_packages 70 line recreate raise exp
     cors
@@ -14,6 +18,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
     event driven architecture asyncio eventemitter
 """
 class BaseConfig(Configuration):
+
+
     AUTH_USER_MODEL = 'users.IndividualModel'
 
     SECRET_KEY = os.getenv("BACKEND_SECRET_KEY")
@@ -24,6 +30,7 @@ class BaseConfig(Configuration):
     CORS_ORIGIN_ALLOW_ALL = True
 
     INSTALLED_APPS = [
+        'daphne',
         'django.contrib.admin',
         'django.contrib.auth',
         'django.contrib.contenttypes',
@@ -36,6 +43,8 @@ class BaseConfig(Configuration):
         'app.users',
         'rest_framework_simplejwt.token_blacklist',
         "corsheaders",
+        "fcm_django",
+        'channels',
     ]
 
     MIDDLEWARE = [
@@ -70,6 +79,17 @@ class BaseConfig(Configuration):
     ]
 
     WSGI_APPLICATION = 'config.wsgi.application'
+
+    ASGI_APPLICATION = "config.asgi.application"
+
+    CHANNEL_LAYERS = {
+        "default": {
+            "BACKEND": "channels_redis.core.RedisChannelLayer",
+            "CONFIG": {
+                "hosts": [("127.0.0.1", 6379)],
+            },
+        },
+    }
 
     # Database
     # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
@@ -121,7 +141,7 @@ class BaseConfig(Configuration):
 
     REST_FRAMEWORK = {
         'DEFAULT_PERMISSION_CLASSES': (
-            'rest_framework.permissions.IsAuthenticated'
+            'rest_framework.permissions.AllowAny',
         ),
         'DEFAULT_AUTHENTICATION_CLASSES': (
             'rest_framework_simplejwt.authentication.JWTAuthentication',
@@ -141,7 +161,7 @@ class BaseConfig(Configuration):
     CELERY_IGNORE_RESULT = True
 
     SIMPLE_JWT = {
-        'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
+        'ACCESS_TOKEN_LIFETIME': timedelta(minutes=1),
         'REFRESH_TOKEN_LIFETIME': timedelta(hours=1),
         'ROTATE_REFRESH_TOKENS': True,
         'BLACKLIST_AFTER_ROTATION': True,
@@ -155,6 +175,18 @@ class BaseConfig(Configuration):
         'TOKEN_TYPE_CLAIM': 'token_type',
     }
 
+    FIREBASE_APP = initialize_app(credentials.Certificate(os.path.join(BASE_DIR, 'hidjama-3326f-firebase-adminsdk-zr9nh-426699b34c.json')))
+
+    FCM_DJANGO_SETTINGS = {
+        "FCM_SERVER_KEY": "AAAAa_zqcLw:APA91bG5R8WXcs0wxlQ0aaM9owrmngBgO9iqVunSuag_jJNJ1iBQ98o6YJrxTyM6e1CjNOl4dwRyCP8u4izg9HTNYb9kNVoglzNYuA0yTmTpAcEnXOCMZhCsFwyKE8Wrb4QO5hzeHktL",
+    }
+
+
+
+
+'''
+    REST_FRAMEWORK => DEFAULT PERMISSION CLASSES CHECK TO AUTHENTICATE FCM
+'''
 
 class Dev(BaseConfig):
     DEBUG = True

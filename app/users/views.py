@@ -4,9 +4,9 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
 
-from .models import IndividualModel, AppointmentModel
+from .models import IndividualModel, AppointmentModel, DeviceToken
 from .serializers import (IndividualRegistrationSerializer, IndividualListSerializer, IndividualLoginSerializer,
-                          AppointmentSerializer)
+                          AppointmentSerializer, DeviceTokenSerializer)
 from rest_framework_simplejwt.exceptions import TokenError
 from rest_framework_simplejwt.views import TokenRefreshView
 
@@ -38,7 +38,9 @@ class AuthViewSet(viewsets.GenericViewSet):
         valid = serializer.is_valid(raise_exception=True)
 
         if valid:
+
             user = serializer.save()
+
             status_code = status.HTTP_201_CREATED
 
             response = {
@@ -178,6 +180,21 @@ class AppointmentsViewSet(viewsets.GenericViewSet):
     summary: string
     color: string
 '''
+class DeviceTokenViewSet(viewsets.GenericViewSet):
+    queryset = DeviceToken.objects.all()
+    serializer_class = DeviceTokenSerializer
+    permission_classes = (permissions.AllowAny,)
+
+    @action(detail=False, methods=['post'])
+    def device_token(self, request):
+        serializer = self.get_serializer(data=request.data)
+        is_valid = serializer.is_valid(raise_exception=True)
+
+        if is_valid:
+            serializer.save()
+            return Response(status=status.HTTP_201_CREATED)
+
+        return Response({"message": "Bad request"}, status=status.HTTP_400_BAD_REQUEST)
 
 
 class CustomTokenRefreshView(TokenRefreshView):

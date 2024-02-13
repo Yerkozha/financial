@@ -55,7 +55,10 @@ class IndividualModel(AbstractBaseUser, PermissionsMixin):
     summary: string
     color: string
 '''
+
+
 class AppointmentModel(models.Model):
+
     STATUS_CHOICES = (
         ('pending', 'Pending'),
         ('confirmed', 'Confirmed'),
@@ -80,6 +83,20 @@ class AppointmentModel(models.Model):
     def __str__(self):
         return f"{self.id}Appointment for {self.user.email} on {self.start}"
 
+
+class DeviceToken(models.Model):
+    token = models.CharField(max_length=255, unique=True)
+    user = models.OneToOneField(IndividualModel, on_delete=models.CASCADE, related_name='device_token')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.token
+
+
+
+class PushNotification(models.Model):
+    title = models.CharField(max_length=255)
+    message = models.TextField(blank=True, null=True)
 
 
 

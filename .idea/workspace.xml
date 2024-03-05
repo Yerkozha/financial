@@ -2,21 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="49227730-c02b-4a94-8394-5e9ef1632304" name="Changes" comment="feat( init )">
-      <change afterPath="$PROJECT_DIR$/app/users/consumers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/users/migrations/0009_pushnotification.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/users/migrations/0010_devicetoken.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hidjama-3326f-firebase-adminsdk-zr9nh-426699b34c.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/articles/serializers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/articles/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/articles/utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/utils/financial_auth.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/utils/randomize.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/users/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/users/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/users/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/users/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/users/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/users/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/users/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/users/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/users/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/utils/FCMMessaging.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/FCMMessaging.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/asgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/config/asgi.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/config/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/config/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,9 +24,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/venv/Lib/site-packages/rest_framework/response.py" root0="SKIP_INSPECTION" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -47,6 +40,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/www/skud&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;aDefault&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;
   }
 }</component>
@@ -148,7 +142,24 @@
       <workItem from="1707580075951" duration="2239000" />
       <workItem from="1707668108481" duration="8755000" />
       <workItem from="1707749154922" duration="3491000" />
-      <workItem from="1707831928645" duration="362000" />
+      <workItem from="1707831928645" duration="7248000" />
+      <workItem from="1707849683704" duration="7014000" />
+      <workItem from="1707926473921" duration="1676000" />
+      <workItem from="1708013639278" duration="11754000" />
+      <workItem from="1708102091411" duration="2454000" />
+      <workItem from="1708188920007" duration="623000" />
+      <workItem from="1708281419761" duration="944000" />
+      <workItem from="1708368583831" duration="3084000" />
+      <workItem from="1708453759800" duration="597000" />
+      <workItem from="1708532040079" duration="29192000" />
+      <workItem from="1708616899588" duration="2791000" />
+      <workItem from="1708696657880" duration="1072000" />
+      <workItem from="1709059081694" duration="2039000" />
+      <workItem from="1709145402966" duration="2465000" />
+      <workItem from="1709322599835" duration="694000" />
+      <workItem from="1709402854454" duration="1801000" />
+      <workItem from="1709582397209" duration="5220000" />
+      <workItem from="1709616914298" duration="1457000" />
     </task>
     <task id="LOCAL-00001" summary="feat( init )">
       <created>1702283183346</created>

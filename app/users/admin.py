@@ -2,12 +2,14 @@ from django.contrib import admin
 from .models import IndividualModel, AppointmentModel, PushNotification, DeviceToken
 from fcm_django.models import FCMDevice
 from firebase_admin.messaging import Message, Notification, AndroidConfig, AndroidNotification
+from django.utils.translation import gettext_lazy as _
 
 @admin.register(IndividualModel)
 class IndividualAdmin(admin.ModelAdmin):
     search_fields = ("is_superuser", "email", "role", )
 
     list_display =  ("id", "is_superuser", "email", "role", )
+    
 
 
 @admin.register(AppointmentModel)

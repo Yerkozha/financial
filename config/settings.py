@@ -8,6 +8,8 @@ from configurations import Configuration
 
 from firebase_admin import initialize_app, credentials, messaging
 
+from django.utils.translation import gettext_lazy as _
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 print('BASE_DIR', os.path.join(BASE_DIR, 'hidjama-3326f-firebase-adminsdk-zr9nh-426699b34c.json'))
@@ -16,6 +18,12 @@ print('BASE_DIR', os.path.join(BASE_DIR, 'hidjama-3326f-firebase-adminsdk-zr9nh-
     cors
     
     event driven architecture asyncio eventemitter
+    
+    i18n chatGPT => model one to many language translations
+    
+    smtp        !!!
+    sms login   !!!
+     
 """
 class BaseConfig(Configuration):
 
@@ -41,6 +49,7 @@ class BaseConfig(Configuration):
         'celery',
         'app.financial',
         'app.users',
+        'app.articles',
         'rest_framework_simplejwt.token_blacklist',
         "corsheaders",
         "fcm_django",
@@ -50,13 +59,13 @@ class BaseConfig(Configuration):
     MIDDLEWARE = [
         'django.middleware.security.SecurityMiddleware',
         'django.contrib.sessions.middleware.SessionMiddleware',
+        'django.middleware.locale.LocaleMiddleware',
         'django.middleware.common.CommonMiddleware',
         'django.middleware.csrf.CsrfViewMiddleware',
         'django.contrib.auth.middleware.AuthenticationMiddleware',
         'django.contrib.messages.middleware.MessageMiddleware',
         'django.middleware.clickjacking.XFrameOptionsMiddleware',
         "corsheaders.middleware.CorsMiddleware",
-        "django.middleware.common.CommonMiddleware",
     ]
 
 
@@ -126,13 +135,27 @@ class BaseConfig(Configuration):
 
     LANGUAGE_CODE = 'en-us'
 
+    LANGUAGES = (
+        ("en", _("English")),
+        ("kk", _("Kazakh")),
+        ("ru", _("Russian")),
+    )
+
+    LOCALE_PATHS = [os.path.join(BASE_DIR, "app", "locale")]
+
     TIME_ZONE = 'Asia/Almaty'
 
     USE_I18N = True
 
+    USE_L10N = True
+
     USE_TZ = True
 
-    STATIC_URL = 'static/'
+    STATIC_URL = '/static/'
+    STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
+    MEDIA_URL = "/media/"
+    MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
     # Default primary key field type
     # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -161,7 +184,7 @@ class BaseConfig(Configuration):
     CELERY_IGNORE_RESULT = True
 
     SIMPLE_JWT = {
-        'ACCESS_TOKEN_LIFETIME': timedelta(minutes=1),
+        'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
         'REFRESH_TOKEN_LIFETIME': timedelta(hours=1),
         'ROTATE_REFRESH_TOKENS': True,
         'BLACKLIST_AFTER_ROTATION': True,

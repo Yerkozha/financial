@@ -39,6 +39,7 @@ class BaseConfig(Configuration):
 
     INSTALLED_APPS = [
         'daphne',
+        'modeltranslation',
         'django.contrib.admin',
         'django.contrib.auth',
         'django.contrib.contenttypes',
@@ -143,7 +144,7 @@ class BaseConfig(Configuration):
 
     LOCALE_PATHS = [os.path.join(BASE_DIR, "app", "locale")]
 
-    TIME_ZONE = 'Asia/Almaty'
+    TIME_ZONE = 'Asia/Aqtau'
 
     USE_I18N = True
 

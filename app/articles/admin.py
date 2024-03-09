@@ -3,7 +3,10 @@ from django.contrib import admin
 from .models import Article
 from django.utils.translation import gettext_lazy as _
 
-@admin.register(Article)
-class ArticleAdmin(admin.ModelAdmin):
+from modeltranslation.admin import TranslationAdmin
 
-    list_display =  ("title", "content", "image", "source", )
+class ArticleAdminTranslation(TranslationAdmin):
+    list_display = ("id", "title", "content", "image", "source",)
+
+
+admin.site.register(Article, ArticleAdminTranslation)

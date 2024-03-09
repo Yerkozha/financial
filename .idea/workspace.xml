@@ -2,17 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="49227730-c02b-4a94-8394-5e9ef1632304" name="Changes" comment="feat( init )">
-      <change afterPath="$PROJECT_DIR$/app/articles/serializers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/articles/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/articles/utils.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/utils/financial_auth.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/utils/randomize.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/articles/translation.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/users/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/users/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/articles/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/articles/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/articles/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/articles/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/config/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/config/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +18,18 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/app/articles/migrations/0002_article_create_date_article_modified_date.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/app/articles/migrations/0004_populate_title_en.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/app/articles/migrations/0005_populate_content_en.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/app/users/migrations/0001_initial.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/app/users/migrations/0002_individualmodel_is_staff.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/app/users/migrations/0003_alter_individualmodel_is_superuser_and_more.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/app/users/migrations/0004_alter_individualmodel_is_superuser.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/app/users/migrations/0005_appointmentmodel.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/app/users/migrations/0006_rename_notes_appointmentmodel_summary_and_more.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/app/users/migrations/0007_remove_appointmentmodel_appointment_date_and_more.py" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -39,7 +45,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/www/skud&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/www/reting&quot;,
     &quot;run.code.analysis.last.selected.profile&quot;: &quot;aDefault&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;
   }
@@ -159,7 +165,12 @@
       <workItem from="1709322599835" duration="694000" />
       <workItem from="1709402854454" duration="1801000" />
       <workItem from="1709582397209" duration="5220000" />
-      <workItem from="1709616914298" duration="1457000" />
+      <workItem from="1709616914298" duration="6367000" />
+      <workItem from="1709719589223" duration="3683000" />
+      <workItem from="1709724589188" duration="5242000" />
+      <workItem from="1709753350826" duration="1281000" />
+      <workItem from="1709797135897" duration="3064000" />
+      <workItem from="1709868227354" duration="1274000" />
     </task>
     <task id="LOCAL-00001" summary="feat( init )">
       <created>1702283183346</created>

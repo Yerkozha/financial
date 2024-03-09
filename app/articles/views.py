@@ -6,10 +6,18 @@ from rest_framework.response import Response
 from .models import Article
 from .serializers import (ArticlesSerializer)
 
+from django.utils import translation # CHECK
 
 class ArticlesViewSet(viewsets.GenericViewSet):
     queryset = Article.objects.all()
     serializer_class = ArticlesSerializer
+
+    # def get_queryset(self):
+    #     queryset = Article.objects.all()
+    #     if 'HTTP_ACCEPT_LANGUAGE' in self.request.META:
+    #         lang = self.request.META['HTTP_ACCEPT_LANGUAGE']
+    #         translation.activate(lang)
+    #     return queryset
 
     def get_permissions(self):
         if self.action == 'list_articles':
@@ -24,20 +32,19 @@ class ArticlesViewSet(viewsets.GenericViewSet):
         serializer = self.get_serializer(data=request.data)
         valid = serializer.is_valid(raise_exception=True)
 
-        if valid:
 
-            serializer.save()
-            status_code = status.HTTP_201_CREATED
-            print(serializer.validated_data)
-            print(serializer.data)
-            response = {
-                'success': True,
-                'statusCode': status_code,
-                'message': 'User successfully registered!',
-                'article': serializer.data
-            }
+        serializer.save()
+        status_code = status.HTTP_201_CREATED
+        print(serializer.validated_data)
+        print(serializer.data)
+        response = {
+            'success': True,
+            'statusCode': status_code,
+            'message': 'User successfully registered!',
+            'article': serializer.data
+        }
 
-            return Response(response, status=status_code)
+        return Response(response, status=status_code)
 
     @action(detail=False, methods=['get'])
     def list_articles(self, request):

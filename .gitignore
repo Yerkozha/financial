@@ -1,7 +1,10 @@
 # Virtual environment
 venv/
 env/
+static/
 .Python
 hidjama-3326f-firebase-adminsdk-zr9nh-426699b34c.json
 
-media
+media/
+
+.env

@@ -13,5 +13,7 @@ fi
 
 python manage.py flush --no-input
 python manage.py migrate
-
+python manage.py collectstatic --no-input
+export DJANGO_SETTINGS_MODULE=config.settings
+export DJANGO_CONFIGURATION=Prod
 exec "$@"

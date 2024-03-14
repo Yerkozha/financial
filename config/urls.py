@@ -37,14 +37,14 @@ def http_x_accel_redirect(path: str):
 @api_view(["GET"])
 def media_index(request):
     """Checks permission and read file"""
-    path = request.path.replace("/financial/media", "/protected")
+    path = request.path.replace("/media", "/protected")
     return http_x_accel_redirect(path)
 
 @api_view(["GET"])
 @authentication_classes([JWTTokenUserAuthentication, SessionAuthentication])
 def media_index_events(request):
     """Checks permission and read file"""
-    path = request.path.replace("/financial/media", "/protected")
+    path = request.path.replace("/media", "/protected")
     return http_x_accel_redirect(path)
 
 
@@ -52,17 +52,17 @@ def media_index_events(request):
 @permission_classes([AllowAny])
 def media_index_external(request):
     """Checks permission and read file"""
-    path = request.path.replace("/financial/media", "/protected")
+    path = request.path.replace("/media", "/protected")
     return http_x_accel_redirect(path)
 
 urlpatterns = [
-    re_path(r"^financial/media/events/.+", media_index_events),
-    re_path(r"^financial/media/documents/external/.+", media_index_external),
-    re_path(r"^financial/media/.+", media_index),
+    re_path(r"^media/events/.+", media_index_events),
+    re_path(r"^media/documents/external/.+", media_index_external),
+    re_path(r"^media/.+", media_index),
 
-    path('financial/', include('app.financial.urls')),
-    path('users/', include('app.users.urls')),
-    path('articles/', include('app.articles.urls')),
+    path('api/financial/', include('app.financial.urls')),
+    path('api/users/', include('app.users.urls')),
+    path('api/articles/', include('app.articles.urls')),
 
 
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),

@@ -30,9 +30,9 @@ class BaseConfig(Configuration):
 
     AUTH_USER_MODEL = 'users.IndividualModel'
 
-    SECRET_KEY = os.getenv("BACKEND_SECRET_KEY")
+    SECRET_KEY = os.getenv("SECRET_KEY")
 
-    DEBUG = True
+    DEBUG = False
 
     ALLOWED_HOSTS = ['*']
     CORS_ORIGIN_ALLOW_ALL = True
@@ -152,10 +152,10 @@ class BaseConfig(Configuration):
 
     USE_TZ = True
 
-    STATIC_URL = '/static/'
+    STATIC_URL = 'http://localhost/static/'
     STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
-    MEDIA_URL = "/media/"
+    MEDIA_URL = "http://localhost/media/"
     MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
     # Default primary key field type
@@ -190,7 +190,7 @@ class BaseConfig(Configuration):
         'ROTATE_REFRESH_TOKENS': True,
         'BLACKLIST_AFTER_ROTATION': True,
         'ALGORITHM': 'HS256',
-        'SIGNING_KEY': os.getenv("BACKEND_SECRET_KEY"),
+        'SIGNING_KEY': os.getenv("SECRET_KEY"),
         'VERIFYING_KEY': None,
         'AUTH_HEADER_TYPES': ('Bearer',),
         'USER_ID_FIELD': 'id',

@@ -25,12 +25,14 @@ print('BASE_DIR', os.path.join(BASE_DIR, 'hidjama-3326f-firebase-adminsdk-zr9nh-
     sms login   !!!
      
 """
+SECRET_KEY = "django-insecure-@jec7as!l!foe-6flaq7c)4*%2a#&t))oi!rq)cxt+x7k@(uke"
+
 class BaseConfig(Configuration):
 
 
     AUTH_USER_MODEL = 'users.IndividualModel'
 
-    SECRET_KEY = os.getenv("SECRET_KEY")
+    SECRET_KEY = SECRET_KEY
 
     DEBUG = False
 
@@ -110,7 +112,7 @@ class BaseConfig(Configuration):
             'NAME': os.getenv('DB_NAME', 'financial'),
             'HOST': os.getenv('DB_HOST', 'postgres'),
             'PORT': os.getenv('DB_PORT', '5432'),
-            'USER': os.getenv('DB_USER', 'postgres'),
+            'USER': os.getenv('DB_USER', 'financial'),
             'PASSWORD': os.getenv('DB_PASSWORD', 'postgres'),
         }
     }
@@ -152,10 +154,10 @@ class BaseConfig(Configuration):
 
     USE_TZ = True
 
-    STATIC_URL = 'http://localhost/static/'
+    STATIC_URL = 'http://195.49.210.112/static/'
     STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
-    MEDIA_URL = "http://localhost/media/"
+    MEDIA_URL = "http://195.49.210.112/media/"
     MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
     # Default primary key field type
@@ -190,7 +192,7 @@ class BaseConfig(Configuration):
         'ROTATE_REFRESH_TOKENS': True,
         'BLACKLIST_AFTER_ROTATION': True,
         'ALGORITHM': 'HS256',
-        'SIGNING_KEY': os.getenv("SECRET_KEY"),
+        'SIGNING_KEY': SECRET_KEY,
         'VERIFYING_KEY': None,
         'AUTH_HEADER_TYPES': ('Bearer',),
         'USER_ID_FIELD': 'id',

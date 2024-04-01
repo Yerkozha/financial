@@ -12,15 +12,21 @@ services:
       - static_volume:/app/static
     depends_on:
       - django
+    networks:
+      - app_network
 
   postgres:
     image: postgres:latest
     volumes:
       - postgres_data:/var/lib/postgresql/data
-    ports:
-      - "5432:5432"
+      - ./logs:/var/log/postgresql
+      - ./postgresql.conf:/etc/postgresql/postgresql.conf
+      - ./pg_hba.conf:/etc/postgresql/pg_hba.conf
     env_file:
       - ./.env
+    command: ["postgres", "-c", "config_file=/etc/postgresql/postgresql.conf"]
+    networks:
+      - app_network
 
   rabbitmq:
     image: rabbitmq:management
@@ -28,20 +34,19 @@ services:
       - "5672:5672"
       - "15672:15672"
     environment:
-      RABBITMQ_DEFAULT_USER: test
-      RABBITMQ_DEFAULT_PASS: qwerty
+      - ./.env
+    networks:
+      - app_network
 
   celery-worker:
     build: .
     command: celery -A config worker --loglevel=info
     environment:
-      - CELERY_BROKER_TRANSPORT_URL=amqp://test:qwerty@rabbitmq:5672//
-      - DATABASE_NAME=financial
-      - DATABASE_USER=postgres
-      - DATABASE_PASSWORD=postgres
-      - DATABASE_HOST=postgres
+      - ./.env
     depends_on:
       - rabbitmq
+    networks:
+      - app_network
 
   django:
     build:
@@ -57,17 +62,27 @@ services:
       - media_volume:/app/media
       - static_volume:/app/static
     ports:
-      - "8001:8001"
-    command: ["gunicorn", "--bind", "0.0.0.0:8001", "config.wsgi:application"]
+      - "8000:8000"
+    command: ["gunicorn", "--bind", "0.0.0.0:8000", "config.wsgi:application"]
+    networks:
+      - app_network
 
   redis:
     restart: unless-stopped
     image: redis:7.2.4-alpine
     expose:
       - 6379
+    networks:
+      - app_network
 
 
 volumes:
   postgres_data:
   media_volume:
   static_volume:
+  logs:
+    driver: local
+
+networks:
+  app_network:
+    driver: bridge

@@ -101,6 +101,13 @@ class PushNotification(models.Model):
 
 
 
-
+class ErrorFeedback(models.Model):
+    
+    description = models.TextField()
+    
+    user = models.ForeignKey(IndividualModel, on_delete=models.CASCADE, related_name='feedback')
+    
+    def __str__(self):
+        return f"{self.user.email}"
 
 

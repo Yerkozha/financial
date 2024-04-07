@@ -6,7 +6,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 
 from .models import IndividualModel, AppointmentModel, DeviceToken
 from .serializers import (IndividualRegistrationSerializer, IndividualListSerializer, IndividualLoginSerializer,
-                          AppointmentSerializer, DeviceTokenSerializer)
+                          AppointmentSerializer, DeviceTokenSerializer, ErrorFeedbackSerializer)
 from rest_framework_simplejwt.exceptions import TokenError
 from rest_framework_simplejwt.views import TokenRefreshView
 
@@ -19,6 +19,8 @@ class AuthViewSet(viewsets.GenericViewSet):
             return IndividualRegistrationSerializer
         elif self.action == 'login':
             return IndividualLoginSerializer
+        elif self.action == 'feedback':
+            return ErrorFeedbackSerializer
         else:
             return IndividualListSerializer
 
@@ -121,6 +123,26 @@ class AuthViewSet(viewsets.GenericViewSet):
             return Response({'detail': f"Token error {str(e)}", "status_code": 400}, status=status.HTTP_400_BAD_REQUEST)
 
         return Response({'success': True, 'detail': 'Successfully logged out.', "status_code": 200}, status=status.HTTP_200_OK)
+    
+    @action(detail=False, methods=['post'])
+    def feedback(self, request):
+        print('I ', request.data)
+        print('USER ', request.user)
+        serializer = self.get_serializer(data=request.data)
+        valid = serializer.is_valid(raise_exception=True)
+        print('valid', valid)
+        serializer.save(owner=request.user)
+        status_code = status.HTTP_201_CREATED
+        print(serializer.validated_data)
+        print(serializer.data)
+        response = {
+            'success': True,
+            'statusCode': status_code,
+            'message': 'User successfully registered!',
+            'article': serializer.data
+        }
+
+        return Response(response, status=status_code)
 
 
 

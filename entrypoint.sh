@@ -12,6 +12,7 @@ then
 fi
 
 python manage.py flush --no-input
+python manage.py makemigrations
 python manage.py migrate
 python manage.py collectstatic --no-input
 export DJANGO_SETTINGS_MODULE=config.settings

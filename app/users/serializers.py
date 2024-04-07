@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import IndividualModel, AppointmentModel, DeviceToken
+from .models import IndividualModel, AppointmentModel, DeviceToken, ErrorFeedback
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import update_last_login
@@ -126,3 +126,20 @@ class DeviceTokenSerializer(serializers.ModelSerializer):
     class Meta:
         model = DeviceToken
         exclude = ('user',)
+
+class ErrorFeedbackSerializer(serializers.ModelSerializer):
+    
+    def create(self, validated_data):
+        
+        user = validated_data.pop('owner', None)
+        print('USER s', user)
+        print(validated_data.get('description', 'description'))
+        feedback = user.feedback.create(description=validated_data.get('description', 'description'))
+        print('created feedback', feedback)
+        feedback.save()
+        user.feedback.add(feedback)
+        return feedback
+    
+    class Meta:
+        model = ErrorFeedback
+        fields = ("description",)

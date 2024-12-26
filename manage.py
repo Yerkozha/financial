@@ -8,7 +8,7 @@ def main():
     """Run administrative tasks."""
     dotenv.read_dotenv()
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
-    os.environ.setdefault('DJANGO_CONFIGURATION', 'Dev')
+    os.environ.setdefault('DJANGO_CONFIGURATION', 'Prod')
 
     try:
         from configurations.management import execute_from_command_line

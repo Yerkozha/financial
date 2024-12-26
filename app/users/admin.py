@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import IndividualModel, AppointmentModel, PushNotification, DeviceToken, Book
+from .models import IndividualModel, AppointmentModel, PushNotification, DeviceToken, Book, ErrorFeedback
 from fcm_django.models import FCMDevice
 from firebase_admin.messaging import Message, Notification, AndroidConfig, AndroidNotification
 from django.utils.translation import gettext_lazy as _
@@ -24,6 +24,11 @@ class AppointmentAdmin(admin.ModelAdmin):
 class AppointmentAdmin(admin.ModelAdmin):
 
     list_display = ("token", )
+
+@admin.register(ErrorFeedback)
+class ErrorFeedbackAdmin(admin.ModelAdmin):
+
+    list_display = ("description", "user", )
 
 
 class PushNotificationAdmin(admin.ModelAdmin):

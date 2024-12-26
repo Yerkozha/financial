@@ -16,21 +16,21 @@ print('BASE_DIR', os.path.join(BASE_DIR, 'hidjama-3326f-firebase-adminsdk-zr9nh-
 """
     site_packages 70 line recreate raise exp
     cors
-
+    
     event driven architecture asyncio eventemitter
-
+    
     i18n chatGPT => model one to many language translations
-
+    
     smtp        !!!
     sms login   !!!
-
+     
 """
-
-
 class BaseConfig(Configuration):
+
+
     AUTH_USER_MODEL = 'users.IndividualModel'
 
-    SECRET_KEY = os.getenv("SECRET_KEY")
+    SECRET_KEY = os.getenv("BACKEND_SECRET_KEY")
 
     DEBUG = True
 
@@ -68,6 +68,7 @@ class BaseConfig(Configuration):
         'django.middleware.clickjacking.XFrameOptionsMiddleware',
         "corsheaders.middleware.CorsMiddleware",
     ]
+
 
     ROOT_URLCONF = 'config.urls'
 
@@ -109,10 +110,11 @@ class BaseConfig(Configuration):
             'NAME': os.getenv('DB_NAME', 'financial'),
             'HOST': os.getenv('DB_HOST', 'postgres'),
             'PORT': os.getenv('DB_PORT', '5432'),
-            'USER': os.getenv('DB_USER', 'postgres'),
+            'USER': os.getenv('DB_USER', 'financial'),
             'PASSWORD': os.getenv('DB_PASSWORD', 'postgres'),
         }
     }
+
 
     # Password validation
     # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -150,10 +152,10 @@ class BaseConfig(Configuration):
 
     USE_TZ = True
 
-    STATIC_URL = '/static/' # 'http://77.240.38.55/static/'
+    STATIC_URL = '/static/'
     STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
-    MEDIA_URL = "/media/" # "http://77.240.38.55/media/"
+    MEDIA_URL = "/media/"
     MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
     # Default primary key field type
@@ -188,7 +190,7 @@ class BaseConfig(Configuration):
         'ROTATE_REFRESH_TOKENS': True,
         'BLACKLIST_AFTER_ROTATION': True,
         'ALGORITHM': 'HS256',
-        'SIGNING_KEY': os.getenv("SECRET_KEY"),
+        'SIGNING_KEY': os.getenv("BACKEND_SECRET_KEY"),
         'VERIFYING_KEY': None,
         'AUTH_HEADER_TYPES': ('Bearer',),
         'USER_ID_FIELD': 'id',
@@ -197,18 +199,18 @@ class BaseConfig(Configuration):
         'TOKEN_TYPE_CLAIM': 'token_type',
     }
 
-    FIREBASE_APP = initialize_app(
-        credentials.Certificate(os.path.join(BASE_DIR, 'hidjama-3326f-firebase-adminsdk-zr9nh-426699b34c.json')))
+    FIREBASE_APP = initialize_app(credentials.Certificate(os.path.join(BASE_DIR, 'hidjama-3326f-firebase-adminsdk-zr9nh-426699b34c.json')))
 
     FCM_DJANGO_SETTINGS = {
         "FCM_SERVER_KEY": "AAAAa_zqcLw:APA91bG5R8WXcs0wxlQ0aaM9owrmngBgO9iqVunSuag_jJNJ1iBQ98o6YJrxTyM6e1CjNOl4dwRyCP8u4izg9HTNYb9kNVoglzNYuA0yTmTpAcEnXOCMZhCsFwyKE8Wrb4QO5hzeHktL",
     }
 
 
+
+
 '''
     REST_FRAMEWORK => DEFAULT PERMISSION CLASSES CHECK TO AUTHENTICATE FCM
 '''
-
 
 class Dev(BaseConfig):
     DEBUG = True

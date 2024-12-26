@@ -60,9 +60,9 @@ urlpatterns = [
     re_path(r"^financial/media/documents/external/.+", media_index_external),
     re_path(r"^financial/media/.+", media_index),
 
-    path('financial/', include('app.financial.urls')),
-    path('users/', include('app.users.urls')),
-    path('articles/', include('app.articles.urls')),
+    path('api/financial/', include('app.financial.urls')),
+    path('api/users/', include('app.users.urls')),
+    path('api/articles/', include('app.articles.urls')),
 
 
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),

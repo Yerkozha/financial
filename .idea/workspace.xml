@@ -1,7 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="49227730-c02b-4a94-8394-5e9ef1632304" name="Changes" comment="feat( init )" />
+    <list default="true" id="49227730-c02b-4a94-8394-5e9ef1632304" name="Changes" comment="feat( init )">
+      <change afterPath="$PROJECT_DIR$/app/users/ai.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/users/tasks.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/users/utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/financial.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/nginx/nginx-setup.conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/users/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/users/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/users/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/users/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/users/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/users/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/config/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/config/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/wsgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/config/wsgi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entrypoint.sh" beforeDir="false" afterPath="$PROJECT_DIR$/entrypoint.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -34,16 +52,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/www/reting&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;aDefault&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "D:/www/cuttlesystem-backend",
+    "run.code.analysis.last.selected.profile": "aDefault",
+    "settings.editor.selected.configurable": "preferences.keymap"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\www\financial" />
@@ -166,6 +184,27 @@
       <workItem from="1709797135897" duration="3064000" />
       <workItem from="1709868227354" duration="1274000" />
       <workItem from="1709982762159" duration="583000" />
+      <workItem from="1710139088905" duration="2147000" />
+      <workItem from="1710227364661" duration="9234000" />
+      <workItem from="1710313513595" duration="3747000" />
+      <workItem from="1710328349442" duration="1279000" />
+      <workItem from="1710585363801" duration="1171000" />
+      <workItem from="1710965851946" duration="596000" />
+      <workItem from="1711483760898" duration="607000" />
+      <workItem from="1711667586064" duration="596000" />
+      <workItem from="1711932218818" duration="1204000" />
+      <workItem from="1715694403886" duration="607000" />
+      <workItem from="1715861673880" duration="646000" />
+      <workItem from="1715959825434" duration="620000" />
+      <workItem from="1716040817830" duration="603000" />
+      <workItem from="1731432231235" duration="3883000" />
+      <workItem from="1731954037710" duration="3878000" />
+      <workItem from="1732053066362" duration="1971000" />
+      <workItem from="1732134740548" duration="10519000" />
+      <workItem from="1732912700560" duration="1227000" />
+      <workItem from="1733638611594" duration="612000" />
+      <workItem from="1734109602286" duration="4227000" />
+      <workItem from="1734340265311" duration="24458000" />
     </task>
     <task id="LOCAL-00001" summary="feat( init )">
       <created>1702283183346</created>

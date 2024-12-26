@@ -1,8 +1,10 @@
 from django.contrib import admin
-from .models import IndividualModel, AppointmentModel, PushNotification, DeviceToken
+from .models import IndividualModel, AppointmentModel, PushNotification, DeviceToken, Book
 from fcm_django.models import FCMDevice
 from firebase_admin.messaging import Message, Notification, AndroidConfig, AndroidNotification
 from django.utils.translation import gettext_lazy as _
+
+from .tasks import process_book_content  # Import the Celery task
 
 @admin.register(IndividualModel)
 class IndividualAdmin(admin.ModelAdmin):
@@ -45,6 +47,17 @@ class PushNotificationAdmin(admin.ModelAdmin):
             print('FCMError', e.args)
             pass
         super().save_model(request, obj, form, change)
+
+
+@admin.register(Book)
+class BookAdmin(admin.ModelAdmin):
+    list_display = ['title', 'author', 'uploaded_by', 'uploaded_at']
+    fields = ('book_file', 'uploaded_by',)
+    def save_model(self, request, obj, form, change):
+        super().save_model(request, obj, form, change)
+        # Trigger background task to process the book's content and generate insights
+        # if not change:  # If the book is new
+        #     process_book_content.delay(obj.id)
 
 
 admin.site.register(PushNotification, PushNotificationAdmin)

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import IndividualModel, AppointmentModel, DeviceToken
+from .models import IndividualModel, AppointmentModel, DeviceToken, Author, Genre, Chapter, Book, Favorite
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import update_last_login
@@ -126,3 +126,37 @@ class DeviceTokenSerializer(serializers.ModelSerializer):
     class Meta:
         model = DeviceToken
         exclude = ('user',)
+
+
+
+
+
+
+class AuthorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Author
+        fields = '__all__'
+
+class GenreSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Genre
+        fields = '__all__'
+
+class ChapterSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Chapter
+        fields = '__all__'
+
+class BookSerializer(serializers.ModelSerializer):
+    author = AuthorSerializer()
+    genres = GenreSerializer(many=True)
+    chapters = ChapterSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Book
+        fields = '__all__'
+
+class FavoriteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Favorite
+        fields = '__all__'

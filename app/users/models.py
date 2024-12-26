@@ -104,3 +104,78 @@ class PushNotification(models.Model):
 
 
 
+
+class Author(models.Model):
+    name = models.CharField(max_length=255, blank=True, null=True)
+    bio = models.TextField(blank=True, null=True)
+
+class Genre(models.Model):
+
+    GENRE_CHOICES = (
+        ('historical', 'Historical'),
+        ('literature', 'Literature'),
+        ('science', 'Science'),
+        ('poetry', 'Poetry'),
+    )
+    name = models.CharField(max_length=255, choices=GENRE_CHOICES, default='literature')
+
+class Book(models.Model):
+    title = models.CharField(max_length=255, blank=True, null=True)
+    description = models.TextField( blank=True, null=True)
+    author = models.ForeignKey(Author, on_delete=models.CASCADE, blank=True, null=True)
+    genres = models.ManyToManyField(Genre, blank=True)
+    published_date = models.DateField(blank=True, null=True)
+    uploaded_by = models.ForeignKey(IndividualModel, on_delete=models.CASCADE)
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+
+    book_file = models.FileField(upload_to='books/', blank=True, null=True)
+
+    class Meta:
+        indexes = [
+            models.Index(fields=['title']),
+        ]
+
+class Chapter(models.Model):
+    book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='chapters')
+    title = models.CharField(max_length=255)
+    order = models.PositiveIntegerField()
+    content = models.TextField()
+
+    annotations = models.JSONField(default=dict)
+
+
+class Paragraph(models.Model):
+    chapter = models.ForeignKey(Chapter, on_delete=models.CASCADE, related_name="paragraphs")
+    order = models.PositiveIntegerField()
+    text = models.TextField()  # Raw paragraph content
+
+
+
+
+class AIInsights(models.Model):
+    book = models.OneToOneField(Book, on_delete=models.CASCADE, related_name="ai_insights")
+    summary = models.TextField(blank=True, null=True)
+    sentiment = models.JSONField(blank=True, null=True)  # Example: {"positive": 0.8, "neutral": 0.2, "negative": 0.0}
+    keywords = models.JSONField(blank=True, null=True)  # Example: ["keyword1", "keyword2"]
+
+class ProcessedContent(models.Model):
+    book = models.OneToOneField(Book, on_delete=models.CASCADE, related_name="processed_content")
+    tokenized = models.JSONField(blank=True, null=True)  # Tokenized text
+    embeddings = models.JSONField(blank=True, null=True)  # Embedding vectors
+
+class BookMetadata(models.Model):
+    book = models.OneToOneField(Book, on_delete=models.CASCADE)
+    metadata = models.JSONField()  # Additional metadata, e.g., publication year, language, etc.
+
+
+
+class Favorite(models.Model):
+    user = models.ForeignKey(IndividualModel, on_delete=models.CASCADE, related_name='favorites')
+    book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='favorited_by')
+    added_date = models.DateTimeField(auto_now_add=True)
+
+
+
+
+
+

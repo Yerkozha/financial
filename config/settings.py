@@ -25,14 +25,16 @@ print('BASE_DIR', os.path.join(BASE_DIR, 'hidjama-3326f-firebase-adminsdk-zr9nh-
     sms login   !!!
      
 """
+SECRET_KEY = "django-insecure-@jec7as!l!foe-6flaq7c)4*%2a#&t))oi!rq)cxt+x7k@(uke"
+
 class BaseConfig(Configuration):
 
 
     AUTH_USER_MODEL = 'users.IndividualModel'
 
-    SECRET_KEY = os.getenv("BACKEND_SECRET_KEY")
+    SECRET_KEY = SECRET_KEY
 
-    DEBUG = True
+    DEBUG = False
 
     ALLOWED_HOSTS = ['*']
     CORS_ORIGIN_ALLOW_ALL = True
@@ -152,10 +154,10 @@ class BaseConfig(Configuration):
 
     USE_TZ = True
 
-    STATIC_URL = '/static/'
+    STATIC_URL = 'http://localhost/static/'
     STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
-    MEDIA_URL = "/media/"
+    MEDIA_URL = "http://localhost/media/"
     MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
     # Default primary key field type
@@ -175,8 +177,8 @@ class BaseConfig(Configuration):
         'EXCEPTION_HANDLER': 'app.utils.exceptions.custom_exception_handler',
     }
 
-    CELERY_BROKER_URL = "amqp://guest:guest@rabbitmq:5672/"
-    BROKER_URL = "amqp://guest:guest@rabbitmq:5672/"
+    CELERY_BROKER_URL = "amqp://test:qwerty@rabbitmq:5672/"
+    BROKER_URL = "amqp://test:qwerty@rabbitmq:5672/"
     CELERY_ACCEPT_CONTENT = ["json"]
     CELERY_TASK_SERIALIZER = "json"
     CELERY_RESULT_SERIALIZER = "json"
@@ -190,7 +192,7 @@ class BaseConfig(Configuration):
         'ROTATE_REFRESH_TOKENS': True,
         'BLACKLIST_AFTER_ROTATION': True,
         'ALGORITHM': 'HS256',
-        'SIGNING_KEY': os.getenv("BACKEND_SECRET_KEY"),
+        'SIGNING_KEY': SECRET_KEY,
         'VERIFYING_KEY': None,
         'AUTH_HEADER_TYPES': ('Bearer',),
         'USER_ID_FIELD': 'id',

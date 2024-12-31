@@ -16,10 +16,10 @@ services:
       - app_network
 
   postgres:
-    image: postgres:latest
+    image: postgres:15
     volumes:
       - postgres_data:/var/lib/postgresql/data
-      - ./logs:/var/log/postgresql
+      - ./logs:/tmp/postgresql
       - ./postgresql.conf:/etc/postgresql/postgresql.conf
       - ./pg_hba.conf:/etc/postgresql/pg_hba.conf
     env_file:
@@ -33,7 +33,7 @@ services:
     ports:
       - "5672:5672"
       - "15672:15672"
-    environment:
+    env_file:
       - ./.env
     networks:
       - app_network
@@ -63,7 +63,8 @@ services:
       - static_volume:/app/static
     ports:
       - "8000:8000"
-    command: ["gunicorn", "--bind", "0.0.0.0:8000", "config.wsgi:application"]
+    #command: ["gunicorn", "--bind", "0.0.0.0:8000", "config.wsgi:application"]
+    command: ["python", "manage.py", "runserver", "0.0.0.0:8000", "--config=Dev"]
     networks:
       - app_network
 

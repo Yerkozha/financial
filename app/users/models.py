@@ -5,6 +5,10 @@ from django.utils import timezone
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
 from .manager import CustomUserManager
+
+from django.utils.timezone import now
+from datetime import timedelta
+
 # class RolesModel(models.Model):
 #     name = models.CharField(max_length=255, unique=True)
 #
@@ -12,7 +16,11 @@ from .manager import CustomUserManager
 #         return self.name
 
 
+
 class IndividualModel(AbstractBaseUser, PermissionsMixin):
+
+    phone_number = models.CharField(max_length=15, blank=True, null=True)
+    is_phone_verified = models.BooleanField(default=False)
 
     ADMIN = 1
     MANAGER = 2
@@ -136,6 +144,10 @@ class Book(models.Model):
     uploaded_at = models.DateTimeField(auto_now_add=True)
 
     book_file = models.FileField(upload_to='books/', blank=True, null=True)
+    
+    def __str__(self):
+        return f"{self.uploaded_by.email}"
+
 
     class Meta:
         indexes = [
@@ -182,7 +194,16 @@ class Favorite(models.Model):
     added_date = models.DateTimeField(auto_now_add=True)
 
 
+class OTPModel(models.Model):
+    password = models.TextField(max_length=128, default='test')
+    phone_number = models.CharField(max_length=15)
+    otp = models.CharField(max_length=6)
+    created_at = models.DateTimeField(auto_now_add=True)
+    is_verified = models.BooleanField(default=False)
 
+    @property
+    def is_expired(self):
+        return now() > self.created_at + timedelta(minutes=30)
 
 
 

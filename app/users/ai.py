@@ -1,8 +1,8 @@
-import textract
-from sklearn.metrics.pairwise import cosine_similarity
-import numpy as np
-from sentence_transformers import SentenceTransformer
-import json
+# import textract
+# from sklearn.metrics.pairwise import cosine_similarity
+# import numpy as np
+# from sentence_transformers import SentenceTransformer
+# import json
 
 # from transformers import pipeline
 # If users ask for summaries of sections or entire books:
@@ -14,33 +14,35 @@ import json
 
 
 def preprocess_and_embed_book(book):
-    model = SentenceTransformer('all-MiniLM-L6-v2')
+    print("INSIDE preprocess_and_embed_book !!!")
+    print(book)
+    # model = SentenceTransformer('all-MiniLM-L6-v2')
 
-    # Split content into manageable sections
-    sections = book.content  # Assume content is already split into paragraphs or sections
-    embeddings = []
-    for section in sections:
-        embeddings.append({
-            'text': section['text'],
-            'embedding': model.encode(section['text']).tolist()
-        })
+    # # Split content into manageable sections
+    # sections = book.content  # Assume content is already split into paragraphs or sections
+    # embeddings = []
+    # for section in sections:
+    #     embeddings.append({
+    #         'text': section['text'],
+    #         'embedding': model.encode(section['text']).tolist()
+    #     })
 
-    # Save embeddings back to the book object
-    book.processed_content.embeddings = embeddings
-    book.processed_content.save()
+    # # Save embeddings back to the book object
+    # book.processed_content.embeddings = embeddings
+    # book.processed_content.save()
 
-def search_book_embeddings(book, query):
-    model = SentenceTransformer('all-MiniLM-L6-v2')
-    query_embedding = model.encode(query)
+# def search_book_embeddings(book, query):
+#     model = SentenceTransformer('all-MiniLM-L6-v2')
+#     query_embedding = model.encode(query)
 
-    # Find the most similar sections
-    similarities = [
-        (section['text'], cosine_similarity([query_embedding], [section['embedding']])[0][0])
-        for section in book.processed_content.embeddings
-    ]
-    # Sort by similarity
-    similarities = sorted(similarities, key=lambda x: x[1], reverse=True)
+#     # Find the most similar sections
+#     similarities = [
+#         (section['text'], cosine_similarity([query_embedding], [section['embedding']])[0][0])
+#         for section in book.processed_content.embeddings
+#     ]
+#     # Sort by similarity
+#     similarities = sorted(similarities, key=lambda x: x[1], reverse=True)
 
-    # Return the top result(s)
-    return similarities[:3]
+#     # Return the top result(s)
+#     return similarities[:3]
 

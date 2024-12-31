@@ -4,11 +4,16 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
 
-from .models import IndividualModel, AppointmentModel, DeviceToken
+from .models import IndividualModel, AppointmentModel, DeviceToken, OTPModel
 from .serializers import (IndividualRegistrationSerializer, IndividualListSerializer, IndividualLoginSerializer,
-                          AppointmentSerializer, DeviceTokenSerializer, ErrorFeedbackSerializer)
+                          AppointmentSerializer, DeviceTokenSerializer, ErrorFeedbackSerializer, SendOTPSerializer, VerifyOTPSerializer, CheckVerificaitonSerializer)
 from rest_framework_simplejwt.exceptions import TokenError
 from rest_framework_simplejwt.views import TokenRefreshView
+
+from firebase_admin import auth as firebase_auth
+
+from .utils import generateOTP
+from .services import send_otp_via_sms
 
 class AuthViewSet(viewsets.GenericViewSet):
     queryset = IndividualModel.objects.all()
@@ -17,21 +22,108 @@ class AuthViewSet(viewsets.GenericViewSet):
 
         if self.action == 'registration':
             return IndividualRegistrationSerializer
-        elif self.action == 'login':
+        elif self.action == 'login' or self.action == 'verifyOTP':
             return IndividualLoginSerializer
         elif self.action == 'feedback':
             return ErrorFeedbackSerializer
+        elif self.action == 'sendOTP':
+            return SendOTPSerializer
+        elif self.action == 'check_verification':
+            return CheckVerificaitonSerializer
         else:
             return IndividualListSerializer
 
     def get_permissions(self):
         print(self.action, 'action')
-        if self.action == 'registration' or self.action == 'login':
+        if self.action == 'registration' or self.action == 'login' or self.action == 'sendOTP' or self.action == 'verifyOTP' or self.action == 'check_verification':
 
             permission_classes = [permissions.AllowAny]
         else:
             permission_classes = [permissions.IsAuthenticated]
         return [permission() for permission in permission_classes]
+
+    @action(detail=False, methods=['post'])
+    def check_verification(self, request):
+        print("check_verification",request.data)
+        serializer = self.get_serializer(data=request.data)
+        valid = serializer.is_valid(raise_exception=True)
+
+        if valid:
+            user, created = serializer.save()
+            print('valid', user)
+            status_code = status.HTTP_200_OK
+
+            response = {
+                'success': True,
+                'statusCode': status_code,
+                'message': 'Success',
+                'created': created,
+                'access': user['access'],
+                'refresh': user['refresh'],
+                'authenticatedUser': {
+                    'email': user['email'],
+                    'is_phone_verified': user['is_phone_verified'],
+                    'phone_number': user['phone_number']
+                }
+            }
+
+            return Response(response, status=status_code)
+
+    @action(detail=False, methods=['post'])
+    def sendOTP(self, request):
+
+        phone_number = request.data.get('phone_number')
+        password = request.data.get('password')
+
+        if not phone_number:
+            return Response({"error": "Phone number is required."}, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+
+            otp = generateOTP()
+            print("otp", otp)
+            OTPModel.objects.create(phone_number=phone_number, otp=otp, password=password)
+
+            # SMS send
+            send_otp_via_sms(phone_number, otp)
+
+            return Response({ 'success': True }, status=status.HTTP_200_OK)
+
+        except Exception as e:
+            return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+
+
+
+    @action(detail=False, methods=['post'])
+    def verifyOTP(self, request):
+
+        serializer = self.get_serializer(data=request.data)
+        valid = serializer.is_valid(raise_exception=True)
+        print('vv', valid)
+        if valid:
+            print('ddD')
+            status_code = status.HTTP_200_OK
+
+            response = {
+                'success': True,
+                'statusCode': status_code,
+                "message": "OTP verified successfully.",
+                'access': serializer.validated_data['access'],
+                'refresh': serializer.validated_data['refresh'],
+                'authenticatedUser': {
+                    'email': serializer.validated_data['email'],
+                    'role': serializer.validated_data['role'],
+                    'id': serializer.validated_data['id'],
+                    'phone_number': serializer.validated_data['phone_number']
+                }
+            }
+            return Response(response, status=status_code)
+
+
+
 
     @action(detail=False, methods=['post'])
     def registration(self, request):

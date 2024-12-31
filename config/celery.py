@@ -17,7 +17,7 @@ app.autodiscover_tasks()
 
 app.conf.beat_schedule = {
     'update-news-task': {
-        'task': 'app.financial.tasks.update_news',
+        'task': 'app.users.tasks.process_book_content',
         'schedule': crontab(minute=0, hour=0),
     },
 }

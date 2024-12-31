@@ -57,12 +57,14 @@ class PushNotificationAdmin(admin.ModelAdmin):
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
     list_display = ['title', 'author', 'uploaded_by', 'uploaded_at']
-    fields = ('book_file', 'uploaded_by',)
+    fields = ('book_file', 'uploaded_by', 'title',)
     def save_model(self, request, obj, form, change):
         super().save_model(request, obj, form, change)
+        print("Hell from docker container!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        print("Hell from docker container!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
         # Trigger background task to process the book's content and generate insights
-        # if not change:  # If the book is new
-        #     process_book_content.delay(obj.id)
+        if not change:  # If the book is new
+            process_book_content.delay(obj.id)
 
 
 admin.site.register(PushNotification, PushNotificationAdmin)
